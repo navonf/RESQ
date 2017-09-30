@@ -10,37 +10,76 @@
 
     <agm-map [latitude]="ucflat" [longitude]="ucflng" 
              [gestureHandling]='greedy' [zoomControl]="false" 
-             [streetViewControl]="false" (mapClick)="setRegister($event)">
+             [streetViewControl]="false" (mapClick)="setRegister($event)" 
+             (centerChange)="centerChange($event)">
 
     <agm-info-window #register [latitude]="ucflat" [longitude]="ucflng">
         
     </agm-info-window> 
 
     <agm-marker *ngFor="let mp of missings" [latitude]="mp.lat" [longitude]="mp.lng" 
-                (markerClick)="open(mp)" [iconUrl]="icon">
-      <agm-info-window #window [latitude]="ucflat" [longitude]="ucflng">
-        I miss you
+                 [iconUrl]="icon">
+
+      <agm-info-window
+                  style="max-height: 5px; overflow-y: auto;">
+        <h5 style="color: #E0263B; text-align: center;">Missing Person</h5>
+        <ion-item class="ionItemInfo">
+          <ion-label class="ionLabelInfo" stacked>Name: {{mp.name}}</ion-label>
+        </ion-item>
+
+        <ion-item class="ionItemInfo">
+          <ion-label class="ionLabelInfo" stacked>Age: {{mp.age}}</ion-label>
+        </ion-item>
+
+        <ion-item class="ionItemInfo">
+          <ion-label class="ionLabelInfo" stacked>Gender: {{mp.gender}}</ion-label>
+        </ion-item>
+
+        <ion-item class="ionItemInfo">
+          <ion-label class="ionLabelInfo" stacked>Latitude: {{mp.lat}}</ion-label>
+        </ion-item>
+
+        <ion-item class="ionItemInfo">
+          <ion-label class="ionLabelInfo" stacked>Longitude: {{mp.lng}}</ion-label>
+        </ion-item>
+
       </agm-info-window>
+
     </agm-marker>
       
     </agm-map>
 
-    <div *ngIf="showModal" class="registerPopUp" >
 
+
+    <div *ngIf="showModal" class="registerPopUp" >
       <div class="form-group">
-        <label class="label-control">Name:</label>
-        <input class="form-control" type="text">
-        <label class="label-control">Date of Birth:</label>
-        <input class="form-control" type="date">
-        <label class="label-control">Gender:</label>
-        <input class="form-control" type="text">
+        <h5 style="color: #FFFFFF; text-align: center;">Missing Person</h5>
+        <ion-item class="ionItem">
+        <ion-label class="ionLabel" floating>Name:</ion-label>
+        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.name"></ion-input>
+        </ion-item>
+        <ion-item class="ionItem">
+        <ion-label class="ionLabel" floating>Age:</ion-label>
+        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.age"></ion-input>
+        </ion-item >
+        <ion-item class="ionItem">
+        <ion-label class="ionLabel" floating>Gender:</ion-label>
+        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.gender"></ion-input>
+        </ion-item>
       </div>
 
       <button ion-button [color]="blue" [round]="true" (click)="setMarker()">
         Register
       </button>
+      <button ion-button [color]="red" [round]="true" 
+              (click)="showModal=false" style="background-color: #DB4253;">
+        Cancel
+      </button>
 
     </div>
 
+    <button ion-button class="localizacion" [round]="true" (click)="getLocalization()">
+        <span class="glyphicon glyphicon-screenshot" style="font-size: 20px;"aria-hidden="true"></span>
+    </button>
 
 </ion-content>

@@ -1,15 +1,17 @@
 <ion-header class="title">RES-Q</ion-header>
 <ion-content>
 
-  <video autoplay loop src="assets/video/peopleWalking2.mp4"></video>
+  <!-- <video autoplay loop src="assets/video/peopleWalking2.mp4"></video> -->
+  <video autoplay loop controls preload="auto" webkit-playsinline><source src="assets/video/peopleWalking2.mp4"></video>
 
-  <div *ngIf="hideFront">
+
+  <div *ngIf="true">
     <div class="front" text-center>
       <img src="assets/front.png">
     </div>
     <div class="buttons" text-center>
       <button (click)="toggleFront()" (click)="toggleSignUp()" ion-button color="light" round>Sign up</button>
-      <button (click)="toggleFront()" (click)="toggleSignIn()" ion-button color="light" round>Log in</button>
+      <button (click)="toggleFront()" (click)="login()" ion-button color="light" round>Log in</button>
     </div>
 
     <h1 class="slogan">Find people. Save lives.</h1>

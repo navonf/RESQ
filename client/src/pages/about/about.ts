@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AuthService }   from './auth.service';
 
 @Component({
   selector: 'page-about',
@@ -21,7 +22,15 @@ export class AboutPage {
   toggleSignUp() {
     this.showSignUp = !this.showSignUp;
   }
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private auth: AuthService) {
 
+  }
+
+  login() {
+    this.auth.signInWithGoogle().then(() => this.onSignInSuccess());
+  }
+
+  onSignInSuccess() {
+    console.log("yo!!!!!");
   }
 }

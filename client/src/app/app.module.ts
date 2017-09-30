@@ -12,6 +12,20 @@ import { Login }    from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation';
+import { AngularFireModule } from 'angularfire2';
+import { AuthService }      from '../pages/about/auth.service';
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyD2a8Rdcnj1fPFi_ZlQf5SNEMlezWjwWfk",
+  authDomain: "firsttest-92ed3.firebaseapp.com",
+  databaseURL: "https://firsttest-92ed3.firebaseio.com",
+  projectId: "firsttest-92ed3",
+  storageBucket: "firsttest-92ed3.appspot.com",
+  messagingSenderId: "656800904558"
+};
+
 
 @NgModule({
   declarations: [
@@ -27,6 +41,7 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDxmjzIytJXSp-gKVKwUB5S1tOAusl1S3c'
     }),
+    AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -40,7 +55,9 @@ import { AgmCoreModule } from '@agm/core';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Geolocation,
+    AuthService
   ]
 })
 export class AppModule {}
