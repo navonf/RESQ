@@ -5,13 +5,13 @@
   <video autoplay loop controls preload="auto" webkit-playsinline><source src="assets/video/peopleWalking2.mp4"></video>
 
 
-  <div *ngIf="true">
+  <div *ngIf="hideFront">
     <div class="front" text-center>
       <img src="assets/front.png">
     </div>
     <div class="buttons" text-center>
       <button (click)="toggleFront()" (click)="toggleSignUp()" ion-button color="light" round>Sign up</button>
-      <button (click)="toggleFront()" (click)="login()" ion-button color="light" round>Log in</button>
+      <button (click)="toggleFront()" (click)="toggleSignIn()" ion-button color="light" round>Log in</button>
     </div>
 
     <h1 class="slogan">Find people. Save lives.</h1>
@@ -23,26 +23,16 @@
 
       <ion-item class="form">
         <ion-label class="input" floating>E-mail</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-
-      <ion-item class="form">
-        <ion-label class="input" floating>User</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="loginForm.username"></ion-input>
       </ion-item>
 
       <ion-item class="form">
         <ion-label class="input" floating>Password</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
-
-      <ion-item class="form">
-        <ion-label class="input" floating>Re-enter Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="loginForm.password"></ion-input>
       </ion-item>
 
       <button class="buttons2" (click)="toggleFront()" (click)="toggleSignUp()"  ion-button color="light" round>Back</button>
-      <button class="buttons2" ion-button color="light" round>Submit</button>
+      <button class="buttons2" ion-button color="light" (click)="onSignUp()" round>Submit</button>
 
     </ion-list>
   </div>
@@ -52,18 +42,18 @@
     <ion-list>
 
       <ion-item class="form">
-        <ion-label class="input" floating>Username</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-label class="input" floating>E-mail</ion-label>
+        <ion-input type="text" [(ngModel)]="loginForm.username"></ion-input>
       </ion-item>
 
       <ion-item class="form">
         <ion-label class="input" floating>Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="loginForm.password"></ion-input>
       </ion-item>
 
 
-      <button class="buttons3" (click)="toggleFront()" (click)="toggleSignIn()" ion-button color="light" round>Back</button>
-      <button class="buttons3" ion-button color="light" round>Log in</button>
+      <button class="buttons3" (click)="toggleFront()" (click)="toggleSignUp()" ion-button color="light" round>Back</button>
+      <button class="buttons3" ion-button color="light" round (click)="onSignIn()">Log in</button>
     </ion-list>
   </div>
 </ion-content>
