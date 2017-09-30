@@ -1,31 +1,25 @@
 import { Component } from '@angular/core';
 import {AlertController, LoadingController, NavController} from 'ionic-angular';
-// import { AuthService }   from './auth.service';
-import {FireBase} from "../../services/firebase";
 import {NgForm} from "@angular/forms";
-
+import {FireBase} from "../../services/firebase";
+/**
+ * Generated class for the Login page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-login',
+  templateUrl: 'login.html',
 })
-export class AboutPage {
-  hideFront = true;
-  showSignUp = false;
-  showLogIn = false;
+export class Login {
 
-  toggleFront() {
-    this.hideFront = !this.hideFront;
+  constructor(public navCtrl: NavController, private loadingCtrl: LoadingController,
+              private firebase: FireBase, private alertCtrl: AlertController) {
   }
 
-  toggleSignIn() {
-    this.showLogIn = !this.showLogIn;
-  }
-
-  toggleSignUp() {
-    this.showSignUp = !this.showSignUp;
-  }
-  constructor(public navCtrl: NavController, private firebase: FireBase, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
-
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad Login');
   }
 
   onSignIn(form: NgForm) {
@@ -56,7 +50,4 @@ export class AboutPage {
       });
   }
 
-  onSignInSuccess() {
-    console.log("yo!!!!!");
-  }
 }

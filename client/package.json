@@ -21,6 +21,7 @@
         "@angular/http": "4.4.3",
         "@angular/platform-browser": "4.4.3",
         "@angular/platform-browser-dynamic": "4.4.3",
+<<<<<<< HEAD
         "@ionic-native/core": "3.12.1",
         "@ionic-native/splash-screen": "3.12.1",
         "@ionic-native/status-bar": "3.12.1",
@@ -34,6 +35,31 @@
         "cordova-plugin-whitelist": "^1.3.1",
         "ionic-angular": "3.7.1",
         "ionic-plugin-keyboard": "^2.2.1",
+=======
+        "@ionic-native/core": "^3.12.1",
+        "@ionic-native/geolocation": "^4.3.0",
+        "@ionic-native/photo-library": "^4.3.0",
+        "@ionic-native/splash-screen": "3.12.1",
+        "@ionic-native/status-bar": "3.12.1",
+        "@ionic/storage": "2.0.1",
+        "angularfire2": "^4.0.0-rc.2",
+        "bootstrap": "^3.3.7",
+        "bootstrap-sass": "^3.3.7",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-add-swift-support": "^1.6.0",
+        "cordova-plugin-compat": "^1.2.0",
+        "cordova-plugin-device": "1.1.4",
+        "cordova-plugin-file": "^4.3.2",
+        "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-plugin-photo-library": "^2.1.0",
+        "cordova-plugin-splashscreen": "~4.0.1",
+        "cordova-plugin-statusbar": "2.2.2",
+        "cordova-plugin-whitelist": "1.3.1",
+        "firebase": "^4.4.0",
+        "ionic-angular": "3.7.1",
+        "ionic-native": "^2.9.0",
+        "ionic-plugin-keyboard": "~2.2.1",
+>>>>>>> 2b6da78ebdb49cd8790e566552d40b1ccd0b93e4
         "ionicons": "3.0.0",
         "ng2-bootstrap": "^1.6.3",
         "ngx-bootstrap": "^1.9.3",
@@ -43,7 +69,11 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "3.0.0",
+<<<<<<< HEAD
         "ionic": "3.12.0",
+=======
+        "ionic": "^3.12.0",
+>>>>>>> 2b6da78ebdb49cd8790e566552d40b1ccd0b93e4
         "typescript": "2.3.4"
     },
     "cordovaPlugins": [
@@ -64,11 +94,18 @@
     ],
     "description": "client: An Ionic project",
     "cordova": {
+<<<<<<< HEAD
+=======
+        "platforms": [
+            "ios"
+        ],
+>>>>>>> 2b6da78ebdb49cd8790e566552d40b1ccd0b93e4
         "plugins": {
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
+<<<<<<< HEAD
             "ionic-plugin-keyboard": {}
         },
         "platforms": [
@@ -76,3 +113,15 @@
         ]
     }
 }
+=======
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": " "
+            },
+            "cordova-plugin-photo-library": {
+                "PHOTO_LIBRARY_USAGE_DESCRIPTION": "To choose photos"
+            }
+        }
+    }
+}
+>>>>>>> 2b6da78ebdb49cd8790e566552d40b1ccd0b93e4

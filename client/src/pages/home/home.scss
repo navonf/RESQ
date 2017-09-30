@@ -2,19 +2,55 @@ page-home {
 
 }
 agm-map {
-  height: 100%;
+	height: 100%;
 }
 
 .registerPopUp {
 	position: absolute;
-	width: 70%;
-	top: 30%;
+	// width: 70%;
+	top: 17%;
 	margin: auto;
-    background-color: #E5E3E1;
+    background-color: #68696A;
     padding: 5%;
-    border: 1px solid #E5E3E1;
+    border: 1px solid #68696A;
     border-radius: 5px;
-    z-index: 99;
-    margin-left: 15%;
+    z-index: 100;
+    margin-left: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    opacity: 0.96;
     
+}
+
+.ionItem {
+	background-color: #68696A;
+}
+
+.ionItemInfo {
+	background-color: #FFFFFF;
+}
+
+.ionLabel {
+	color: #FFFFFF;
+	text-align: left;
+}
+
+.ionLabelInfo {
+	color: #000000;
+	text-align: left;
+}
+
+
+.localizacion {
+	position: absolute;
+	z-index: 99;
+	right: 5px;
+	top: 80%;
+	background-color: #FCFCFC;
+	color: #1F91FC;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.localizacion:hover {
+	background-color: #FFFFFF;
+	color: #64B0F7;
 }
