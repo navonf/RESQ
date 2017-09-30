@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {AlertController, LoadingController, NavController} from 'ionic-angular';
+import { NavController, App} from 'ionic-angular';
 import { AuthService } from "../../services/firebase";
 import { FormBuilder, Validators } from '@angular/forms';
+import { HomePage }    from '../home/home';
 
 @Component({
   selector: 'page-about',
@@ -26,8 +27,7 @@ export class AboutPage {
     this.showSignUp = !this.showSignUp;
   }
   constructor(public navCtrl: NavController, private firebase: AuthService, 
-              private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-              private fb: FormBuilder) {
+              private fb: FormBuilder, public appCtrl: App) {
     this.loginForm = fb.group({
       email: ['', Validators.required ],
       password: ['', Validators.required ]
@@ -35,9 +35,7 @@ export class AboutPage {
   }
 
   onSignIn() {
-
-    let aux = this.firebase.signin(this.loginForm.value.email, this.loginForm.value.password);
-    if (aux)
+    if (this.firebase.signin(this.loginForm.username, this.loginForm.password)) 
       this.onSignInSuccess();
     else
       this.showLogIn = false;
@@ -46,8 +44,7 @@ export class AboutPage {
   }
 
   onSignUp() {
-
-    if (this.firebase.signup(this.loginForm.value.email, this.loginForm.value.password))
+    if (this.firebase.signup(this.loginForm.username, this.loginForm.password))
       this.onSignInSuccess();
     else
       this.showSignUp = false;
@@ -56,6 +53,9 @@ export class AboutPage {
   }
 
   onSignInSuccess() {
-    console.log("yo!!!!!");
+    this.loginForm.username = '';
+    this.loginForm.password = '';
+    this.appCtrl.getRootNav().push(HomePage);
+    
   }
 }

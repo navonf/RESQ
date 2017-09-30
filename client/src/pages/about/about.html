@@ -23,12 +23,12 @@
 
       <ion-item class="form">
         <ion-label class="input" floating>E-mail</ion-label>
-        <ion-input type="text" [(ngModel)]="loginForm.username"></ion-input>
+        <ion-input name="email" type="text" [(ngModel)]="loginForm.username"></ion-input>
       </ion-item>
 
       <ion-item class="form">
         <ion-label class="input" floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="loginForm.password"></ion-input>
+        <ion-input name="password" type="password" [(ngModel)]="loginForm.password"></ion-input>
       </ion-item>
 
       <button class="buttons2" (click)="toggleFront()" (click)="toggleSignUp()"  ion-button color="light" round>Back</button>
