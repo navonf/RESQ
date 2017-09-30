@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
@@ -7,29 +7,44 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage implements OnInit {
 
+	title: string = "Test ShellHacks2017";
+	missings = [];
+	showModal = false;
+	ucflat = 28.6024274;
+ 	ucflng = -81.2000599;
+ 	icon = "assets/icon.png";
+  	f = true;
+  	@ViewChild('window')
+  	w;
+  	eventSaved;
+
+
+
   constructor(public navCtrl: NavController) {
 
   }
 
-  title: string = "Test ShellHacks2017";
-  lat: number = 25.759591;
-  lng: number = -80.374240;
-
-  ucflat = 28.6024274;
-  ucflng = -81.2000599;
-  // icon = "https://www.shareicon.net/data/128x128/2016/04/21/753224_hospital_512x512.png";
-  icon = "assets/icon.png";
-  @ViewChild('window')
-  w;
-
-
   ngOnInit() {
-
-  }
+  	let point1 = {lat: 25.759591,lng: -80.374240};
+  	let point2 = {lat: 28.6024274,lng: -81.2000599};
+  	this.missings.push(point1);
+  	this.missings.push(point2);
+  	console.log(this.missings);
+  } 
 
   open() {
-  	console.log("test");
   	this.w.open();
+  }
+
+  setRegister(event) {
+  	this.showModal = true;
+  	this.eventSaved = event;
+  }
+
+
+  setMarker() {
+  	this.showModal=false;
+  	this.missings.push({lat: this.eventSaved.coords.lat,lng: this.eventSaved.coords.lng});
   }
 
 

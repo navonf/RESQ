@@ -4,3 +4,17 @@ page-home {
 agm-map {
   height: 100%;
 }
+
+.registerPopUp {
+	position: absolute;
+	width: 70%;
+	top: 30%;
+	margin: auto;
+    background-color: #E5E3E1;
+    padding: 5%;
+    border: 1px solid #E5E3E1;
+    border-radius: 5px;
+    z-index: 99;
+    margin-left: 15%;
+    
+}
