@@ -1,4 +1,41 @@
 <ion-header class="title">RES-Q</ion-header>
 <ion-content>
+
   <video autoplay loop src="assets/video/peopleWalking2.mp4"></video>
+
+  <div *ngIf="hideFront">
+    <div class="front" text-center>
+      <img src="assets/front.png">
+    </div>
+    <div class="buttons" text-center>
+      <button (click)="toggleFront()" ion-button color="light" round>Sign up</button>
+      <button (click)="toggleFront()" ion-button color="light" round>Log in</button>
+    </div>
+
+    <h1 class="slogan">Find people. Save lives.</h1>
+  </div>
+
+  <div class="formDiv" *ngIf="showSignUp" text-center>
+    <ion-list>
+
+      <ion-item class="form">
+        <ion-label class="input" floating>Username</ion-label>
+        <ion-input type="text" value=""></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label class="input" floating>Password</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label class="input" floating>Re-enter Password</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+
+      <button class="buttons" (click)="toggleFront()" ion-button color="light" round>Back</button>
+
+    </ion-list>
+  </div>
+
 </ion-content>

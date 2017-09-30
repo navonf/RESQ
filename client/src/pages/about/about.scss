@@ -22,4 +22,36 @@ page-about {
       color: white;
     }
 
+    .buttons {
+      opacity: 0.75;
+      margin-top: 50%;
+      text-align: center;
+    }
+
+    .front {
+      opacity: 0.55;
+      margin-top: 20%;
+      text-align: center;
+    }
+
+    .slogan {
+      text-align: center;
+      color: white;
+      opacity: 0.75;
+    }
+
+    .form {
+      background-color: transparent;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+
+    .formDiv {
+      top: 5em;
+    }
+
+    .input {
+      color: white;
+      opacity: .80;
+    }
 }
