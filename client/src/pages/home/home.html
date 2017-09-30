@@ -1,23 +1,23 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>ShellHacks 2017</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to ShellHacks 2017!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+    
 
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map>
+
+    <agm-map [latitude]="ucflat" [longitude]="ucflng" 
+             [gestureHandling]='greedy' [disableDefaultUI]="true">
+    <agm-marker [latitude]="lat" [longitude]="lng" (markerClick)="open()"></agm-marker>
+    
+
+    <agm-marker [latitude]="ucflat" [longitude]="ucflng" 
+      [iconUrl]="icon" (markerClick)="open()"></agm-marker>
+      <agm-info-window #window [latitude]="ucflat" [longitude]="ucflng">I miss you</agm-info-window>
+    </agm-map>
+
 
 
 
