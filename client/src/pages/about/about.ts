@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, LoadingController, NavController} from 'ionic-angular';
-// import { AuthService }   from './auth.service';
-import {FireBase} from "../../services/firebase";
-import {NgForm} from "@angular/forms";
+import { AuthService } from "../../services/firebase";
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'page-about',
@@ -12,6 +11,8 @@ export class AboutPage {
   hideFront = true;
   showSignUp = false;
   showLogIn = false;
+  loginForm;
+ 
 
   toggleFront() {
     this.hideFront = !this.hideFront;
@@ -24,36 +25,34 @@ export class AboutPage {
   toggleSignUp() {
     this.showSignUp = !this.showSignUp;
   }
-  constructor(public navCtrl: NavController, private firebase: FireBase, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
-
+  constructor(public navCtrl: NavController, private firebase: AuthService, 
+              private alertCtrl: AlertController, private loadingCtrl: LoadingController,
+              private fb: FormBuilder) {
+    this.loginForm = fb.group({
+      email: ['', Validators.required ],
+      password: ['', Validators.required ]
+    });
   }
 
-  onSignIn(form: NgForm) {
-    console.log(form.value);
+  onSignIn() {
 
-    const loading = this.loadingCtrl.create({
-      content: 'Logging you in...'
-    });
+    let aux = this.firebase.signin(this.loginForm.value.email, this.loginForm.value.password);
+    if (aux)
+      this.onSignInSuccess();
+    else
+      this.showLogIn = false;
+    
+      
+  }
 
-    loading.present();
+  onSignUp() {
 
-    // Luis: Calls the signin method in the auth-service.ts file. This calls the signin request to firebase.
-    this.firebase.signin(form.value.email, form.value.password)
-    // Luis: handles the case when the sign up is successful.
-      .then(data => {
-        loading.dismiss();
-
-      })
-      // Luis: handles the case when the sign up is not successful.
-      .catch(error => {
-        loading.dismiss();
-        const alert = this.alertCtrl.create({
-          title: 'Signin Failed!',
-          message: error.message,
-          buttons: ['Ok']
-        });
-        alert.present();
-      });
+    if (this.firebase.signup(this.loginForm.value.email, this.loginForm.value.password))
+      this.onSignInSuccess();
+    else
+      this.showSignUp = false;
+    
+      
   }
 
   onSignInSuccess() {
