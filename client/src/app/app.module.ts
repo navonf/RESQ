@@ -13,6 +13,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AgmCoreModule } from '@agm/core';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { HttpModule } from "@angular/http";
+
+export const firebaseConfig = {
+  "apiKey": "AIzaSyD2a8Rdcnj1fPFi_ZlQf5SNEMlezWjwWfk",
+  "authDomain": "firsttest-92ed3.firebaseapp.com",
+  "databaseURL": "https://firsttest-92ed3.firebaseio.com",
+  "projectId": "firsttest-92ed3",
+  "storageBucket": "firsttest-92ed3.appspot.com",
+  "messagingSenderId": "656800904558"
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -27,7 +41,11 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDxmjzIytJXSp-gKVKwUB5S1tOAusl1S3c'
     }),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
