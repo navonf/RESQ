@@ -1,5 +1,5 @@
+
 <ion-header class="title">RES-Q</ion-header>
-<ion-content>
 
   <!-- <video autoplay loop src="assets/video/peopleWalking2.mp4"></video> -->
   <video autoplay loop controls preload="auto" webkit-playsinline><source src="assets/video/peopleWalking2.mp4"></video>
@@ -7,7 +7,7 @@
 
   <div *ngIf="hideFront">
     <div class="front" text-center>
-      <img src="assets/front.png">
+      <img src="assets/753224_hospital_512x512.png">
     </div>
     <div class="buttons" text-center>
       <button (click)="toggleFront()" (click)="toggleSignUp()" ion-button color="light" round>Sign up</button>
@@ -31,8 +31,13 @@
         <ion-input name="password" type="password" [(ngModel)]="loginForm.password"></ion-input>
       </ion-item>
 
+<<<<<<< HEAD
+      <button class="buttons2" (click)="toggleFront()" (click)="toggleSignUp()"  ion-button color="danger" round>Back</button>
+      <button class="buttons2" ion-button round>Submit</button>
+=======
       <button class="buttons2" (click)="toggleFront()" (click)="toggleSignUp()"  ion-button color="light" round>Back</button>
       <button class="buttons2" ion-button color="light" (click)="onSignUp()" round>Submit</button>
+>>>>>>> 2dd22d8729818f36e1e9d3aaf205ea2740207ace
 
     </ion-list>
   </div>
@@ -52,8 +57,14 @@
       </ion-item>
 
 
+<<<<<<< HEAD
+      <button class="buttons3" (click)="toggleFront()" (click)="toggleSignIn()" ion-button color="danger" round>Back</button>
+      <button class="buttons3" ion-button round>Log in</button>
+=======
       <button class="buttons3" (click)="toggleFront()" (click)="toggleSignUp()" ion-button color="light" round>Back</button>
       <button class="buttons3" ion-button color="light" round (click)="onSignIn()">Log in</button>
+>>>>>>> 2dd22d8729818f36e1e9d3aaf205ea2740207ace
     </ion-list>
   </div>
+
 </ion-content>

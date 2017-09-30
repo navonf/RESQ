@@ -6,6 +6,10 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2dd22d8729818f36e1e9d3aaf205ea2740207ace
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,7 +40,11 @@ export const firebaseConfig = {
     MyApp,
     AboutPage,
     HomePage,
+<<<<<<< HEAD
+    TabsPage
+=======
     TabsPage,
+>>>>>>> 2dd22d8729818f36e1e9d3aaf205ea2740207ace
   ],
   imports: [
     BrowserModule,
