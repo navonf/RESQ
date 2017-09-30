@@ -1,15 +1,8 @@
 page-about {
 
-  video {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        // min-width: 25%;
-        // min-height: 25%;
-        width: 330%;
-        height: 330%;
-        z-index: -100;
-        transform: translateX(-50%) translateY(-50%);
+    .bg {
+      background-size: 300%;
+      background-color: #FBCEB1;
     }
 
     .title {
@@ -29,7 +22,7 @@ page-about {
     }
     .buttons2 {
       opacity: 0.75;
-      margin-top: 23%;
+      margin-top: 59%;
       text-align: center;
     }
     .buttons3 {
