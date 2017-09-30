@@ -8,14 +8,20 @@ import { NavController } from 'ionic-angular';
 export class AboutPage {
   hideFront = true;
   showSignUp = false;
+  showLogIn = false;
 
   toggleFront() {
     this.hideFront = !this.hideFront;
-    this.showSignUp = !this.showSignUp;
   }
 
+  toggleSignIn() {
+    this.showLogIn = !this.showLogIn;
+  }
+
+  toggleSignUp() {
+    this.showSignUp = !this.showSignUp;
+  }
   constructor(public navCtrl: NavController) {
 
   }
-
 }

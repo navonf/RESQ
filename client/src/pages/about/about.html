@@ -8,19 +8,25 @@
       <img src="assets/front.png">
     </div>
     <div class="buttons" text-center>
-      <button (click)="toggleFront()" ion-button color="light" round>Sign up</button>
-      <button (click)="toggleFront()" ion-button color="light" round>Log in</button>
+      <button (click)="toggleFront()" (click)="toggleSignUp()" ion-button color="light" round>Sign up</button>
+      <button (click)="toggleFront()" (click)="toggleSignIn()" ion-button color="light" round>Log in</button>
     </div>
 
     <h1 class="slogan">Find people. Save lives.</h1>
   </div>
 
-  <div class="formDiv" *ngIf="showSignUp" text-center>
+  <!--  Sign up -->
+  <div *ngIf="showSignUp" text-center>
     <ion-list>
 
       <ion-item class="form">
-        <ion-label class="input" floating>Username</ion-label>
-        <ion-input type="text" value=""></ion-input>
+        <ion-label class="input" floating>E-mail</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label class="input" floating>User</ion-label>
+        <ion-input type="text"></ion-input>
       </ion-item>
 
       <ion-item class="form">
@@ -33,9 +39,29 @@
         <ion-input type="password"></ion-input>
       </ion-item>
 
-      <button class="buttons" (click)="toggleFront()" ion-button color="light" round>Back</button>
+      <button class="buttons2" (click)="toggleFront()" (click)="toggleSignUp()"  ion-button color="light" round>Back</button>
+      <button class="buttons2" ion-button color="light" round>Submit</button>
 
     </ion-list>
   </div>
 
+  <!-- Log in -->
+  <div *ngIf="showLogIn" text-center>
+    <ion-list>
+
+      <ion-item class="form">
+        <ion-label class="input" floating>Username</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label class="input" floating>Password</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+
+
+      <button class="buttons3" (click)="toggleFront()" (click)="toggleSignIn()" ion-button color="light" round>Back</button>
+      <button class="buttons3" ion-button color="light" round>Log in</button>
+    </ion-list>
+  </div>
 </ion-content>

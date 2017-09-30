@@ -24,14 +24,24 @@ page-about {
 
     .buttons {
       opacity: 0.75;
-      margin-top: 50%;
+      margin-top: 40%;
+      text-align: center;
+    }
+    .buttons2 {
+      opacity: 0.75;
+      margin-top: 23%;
+      text-align: center;
+    }
+    .buttons3 {
+      opacity: 0.75;
+      margin-top: 59%;
       text-align: center;
     }
 
     .front {
       opacity: 0.55;
       margin-top: 20%;
-      text-align: center;
+
     }
 
     .slogan {
@@ -53,5 +63,6 @@ page-about {
     .input {
       color: white;
       opacity: .80;
+      text-align: left;
     }
 }
