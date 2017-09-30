@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService }				from '../../services/firebase';
 
 @Component({
   selector: 'home',
@@ -25,11 +26,15 @@ export class HomePage implements OnInit {
 
 
   constructor(public navCtrl: NavController, private geolocation: Geolocation, 
-  			  private fb: FormBuilder) {
+  			  private fb: FormBuilder, private firebase: AuthService) {
 
   }
 
   ngOnInit() {
+
+  	firebase.readVictims();
+
+
   	let point1 = {name:"Navon", age:"22", gender:"m", lat: 25.759591,lng: -80.374240};
   	let point2 = {name:"Luis", age:"24", gender:"m",lat: 28.6024274,lng: -81.2000599};
   	this.missings.push(point1);

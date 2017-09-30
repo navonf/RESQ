@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 // import * as firebase from 'firebase/app';
 
@@ -9,7 +10,7 @@ export class AuthService {
 
 	user: Observable<firebase.User>;
 
-	constructor(public afAuth: AngularFireAuth) {
+	constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     	this.user = afAuth.authState;
   	}
 
@@ -32,6 +33,12 @@ export class AuthService {
         return false;
       });
   }
+
+  readVictims() {
+  	return this.db.list('/victims/');
+  }
+
+
 
 }
 
