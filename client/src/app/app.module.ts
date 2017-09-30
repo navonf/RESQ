@@ -27,6 +27,11 @@ export const firebaseConfig = {
 };
 
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { HttpModule } from "@angular/http";
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -41,8 +46,11 @@ export const firebaseConfig = {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDxmjzIytJXSp-gKVKwUB5S1tOAusl1S3c'
     }),
+    IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    IonicModule.forRoot(MyApp)
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,7 +65,7 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
-    AuthService
+    // AuthService
   ]
 })
 export class AppModule {}
