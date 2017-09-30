@@ -13,7 +13,7 @@ export class AboutPage {
   showSignUp = false;
   showLogIn = false;
   loginForm;
- 
+
 
   toggleFront() {
     this.hideFront = !this.hideFront;
@@ -26,7 +26,7 @@ export class AboutPage {
   toggleSignUp() {
     this.showSignUp = !this.showSignUp;
   }
-  constructor(public navCtrl: NavController, private firebase: AuthService, 
+  constructor(public navCtrl: NavController, private firebase: AuthService,
               private fb: FormBuilder, public appCtrl: App) {
     this.loginForm = fb.group({
       email: ['', Validators.required ],
@@ -35,12 +35,12 @@ export class AboutPage {
   }
 
   onSignIn() {
-    if (this.firebase.signin(this.loginForm.username, this.loginForm.password)) 
+    if (this.firebase.signin(this.loginForm.username, this.loginForm.password))
       this.onSignInSuccess();
     else
       this.showLogIn = false;
-    
-      
+
+
   }
 
   onSignUp() {
@@ -48,14 +48,14 @@ export class AboutPage {
       this.onSignInSuccess();
     else
       this.showSignUp = false;
-    
-      
+
+
   }
 
   onSignInSuccess() {
     this.loginForm.username = '';
     this.loginForm.password = '';
     this.navCtrl.setRoot(HomePage);
-    
+
   }
 }
