@@ -55,7 +55,7 @@ export class AboutPage {
   onSignInSuccess() {
     this.loginForm.username = '';
     this.loginForm.password = '';
-    this.appCtrl.getRootNav().push(HomePage);
+    this.navCtrl.setRoot(HomePage);
     
   }
 }
