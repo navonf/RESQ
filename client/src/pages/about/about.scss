@@ -17,7 +17,7 @@ page-about {
 
     .buttons {
       opacity: 0.75;
-      margin-top: 40%;
+      margin-top: 15%;
       text-align: center;
     }
     .buttons2 {
@@ -32,8 +32,10 @@ page-about {
     }
 
     .front {
-      opacity: 0.55;
-      margin-top: 20%;
+      opacity: 0.75;
+      width: 74%;
+      height: 74%;
+      margin-top: 5%;
 
     }
 
@@ -58,4 +60,5 @@ page-about {
       opacity: .80;
       text-align: left;
     }
+
 }
