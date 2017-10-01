@@ -2,11 +2,9 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FormBuilder, Validators } from '@angular/forms';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { ImagePicker } from '@ionic-native/image-picker';
-
+import { AuthService }				from '../../services/firebase';
+import { Observable } from 'rxjs/Observable';
+import { Camera } from 'ionic-native';
 
 @Component({
   selector: 'home',
@@ -26,6 +24,8 @@ export class HomePage implements OnInit {
   	@ViewChild('window')
   	w;
   	missingForm;
+  	items: Observable<any[]>;
+  	imageSrc: string;
 
 
   constructor(public navCtrl: NavController,
@@ -37,28 +37,28 @@ export class HomePage implements OnInit {
     private imagePicker: ImagePicker) {
   }
 
-    // fileTransfer: FileTransferObject = this.transfer.create();
-  options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+
+
+  constructor(public navCtrl: NavController, private geolocation: Geolocation,
+  			  private fb: FormBuilder, private firebase: AuthService) {
   }
 
   ngOnInit() {
-  	let point1 = {name:"Navon", age:"22", gender:"m", lat: 25.759591,lng: -80.374240};
-  	let point2 = {name:"Luis", age:"24", gender:"m",lat: 28.6024274,lng: -81.2000599};
-  	this.missings.push(point1);
-  	this.missings.push(point2);
-  	console.log(this.missings);
-
+  	this.firebase.readVictims().subscribe(items => {
+  		this.missings = [];
+  		items.forEach(snapshot => {
+          this.missings.push(snapshot);
+        });
+        console.log(this.missings);
+  	});
 
   	this.missingForm = this.fb.group({
-      name: ['', Validators.required ],
-      age: ['', Validators.required ],
-      gender: ['', Validators.required ],
-      lat: [0, Validators.required ],
-      lng: [0, Validators.required ]
+      Name: ['', Validators.required ],
+      Age: ['', Validators.required ],
+      Gender: ['', Validators.required ],
+      Lat: [0, Validators.required ],
+      Lng: [0, Validators.required ],
+      Missing: [true, Validators.required]
     });
 
 
@@ -70,19 +70,24 @@ export class HomePage implements OnInit {
 
   setRegister(event) {
   	this.showModal = true;
-  	this.missingForm.name = "";
-  	this.missingForm.age = "";
-  	this.missingForm.gender = "";
-  	this.missingForm.lat = event.coords.lat;
-  	this.missingForm.lng = event.coords.lng;
+  	this.missingForm.Name = "";
+  	this.missingForm.Age = "";
+  	this.missingForm.Gender = "";
+  	this.missingForm.Lat = event.coords.lat;
+  	this.missingForm.Lng = event.coords.lng;
+  	this.missingForm.Missing = true;
   }
 
 
   setMarker() {
   	this.showModal=false;
-  	this.missings.push({name: this.missingForm.name, age: this.missingForm.age,
-  					  gender: this.missingForm.gender, lat: this.missingForm.lat,
-  					  lng: this.missingForm.lng});
+  	this.missings.push({Name: this.missingForm.Name, Age: this.missingForm.Age,
+  					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
+  					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
+  	// this.writeList();
+  	this.updateList({Name: this.missingForm.Name, Age: this.missingForm.Age,
+  					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
+  					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
   }
 
   getLocalization() {
@@ -114,6 +119,14 @@ export class HomePage implements OnInit {
           console.log('Image URI: ' + results[i]);
       }
     }, (err) => { });
+  }
+
+  writeList() {
+  	this.firebase.writeVictims(this.missings);
+  }
+
+  updateList(person) {
+  	this.firebase.updateVictims(person);
   }
 
 

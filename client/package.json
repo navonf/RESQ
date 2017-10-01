@@ -23,9 +23,13 @@
         "@angular/platform-browser-dynamic": "4.4.3",
         "@ionic-native/camera": "^4.3.0",
         "@ionic-native/core": "^3.12.1",
+<<<<<<< HEAD
         "@ionic-native/file": "^3.14.0",
         "@ionic-native/file-path": "^4.3.0",
         "@ionic-native/file-transfer": "^4.3.0",
+=======
+        "@ionic-native/firebase": "^4.3.0",
+>>>>>>> f2e36fa5dca41558793f714bc851bcd080cd6b11
         "@ionic-native/geolocation": "^4.3.0",
         "@ionic-native/image-picker": "^4.3.0",
         "@ionic-native/photo-library": "^4.3.0",
@@ -98,12 +102,18 @@
             "cordova-plugin-photo-library": {
                 "PHOTO_LIBRARY_USAGE_DESCRIPTION": "To choose photos"
             },
+<<<<<<< HEAD
             "cordova-plugin-file-transfer": {},
             "cordova-plugin-filepath": {},
             "cordova-plugin-file": {},
             "cordova-plugin-camera": {},
             "com.synconset.imagepicker": {
                 "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
+=======
+            "cordova-plugin-camera": {
+                "CAMERA_USAGE_DESCRIPTION": " ",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
+>>>>>>> f2e36fa5dca41558793f714bc851bcd080cd6b11
             }
         },
         "platforms": [
