@@ -20,7 +20,8 @@
 
       <agm-info-window
                   style="max-height: 5px; overflow-y: auto;">
-        <h5 style="color: #E0263B; text-align: center;">Missing Person</h5>
+        <h5 *ngIf="mp.Missing == true" style="color: #E0263B; text-align: center;">Missing Person</h5>
+        <h5 *ngIf="mp.Missing != true" style="color: #1CB61C; text-align: center;">Person Found!</h5>
         <ion-item class="ionItemInfo">
           <ion-label class="ionLabelInfo" stacked>Name: {{mp.Name}}</ion-label>
         </ion-item>
@@ -46,7 +47,7 @@
           <ion-label class="ionLabelInfo" stacked>Longitude: {{mp.Lng}}</ion-label>
         </ion-item>
 
-        <button ion-button [round]="true"  style="background-color: rgb(219, 66, 83);
+        <button *ngIf="mp.Missing == true" ion-button [round]="true"  style="background-color: rgb(219, 66, 83);
               margin: auto; transition: none; margin-top: 3%; width: 30%; margin-left: 40%"
               (click)="updateStatus(mp)">
           RES-Q!
@@ -106,15 +107,15 @@
         <ion-label class="ionLabel" floating style="font-size: 18px;">Name: {{selected.Name}}</ion-label>
         <ion-item class="ionItem">
           <ion-label class="ionLabel" floating>Url:</ion-label>
-          <ion-input require type="text" style="color: #FFFFFF" [(ngModel)]="selected.Url"></ion-input>
+          <ion-input require type="text" style="color: #FFFFFF" [(ngModel)]="checkUrl"></ion-input>
         </ion-item>
       </div>
 
       <button *ngIf="imageSrc" ion-button icon-only (click)="uploadPhoto()">
         <ion-icon name="md-attach"></ion-icon>
       </button>
-      <button ion-button [color]="blue" [round]="true" (click)="setMarker()" >
-        Register
+      <button ion-button [color]="blue" [round]="true" (click)="checkFaces()" >
+        Verify
       </button>
       <button ion-button [color]="red" [round]="true" 
               (click)="showModalUpdate=false" style="background-color: #DB4253;">

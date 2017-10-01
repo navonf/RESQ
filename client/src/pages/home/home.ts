@@ -29,6 +29,7 @@ export class HomePage implements OnInit {
   	selected;
   	showModalUpdate = false;
   	savedIcon = "assets/savedicon.png";
+  	checkUrl;
 
   constructor(public navCtrl: NavController, private geolocation: Geolocation,
   			  private fb: FormBuilder, private firebase: AuthService) {
@@ -137,6 +138,16 @@ export class HomePage implements OnInit {
 
   updateStatusList(selected) {
   	this.updateList(selected);
+  }
+
+  checkFaces(first, second) {
+  	let result = this.firebase.checkFaces(this.selected.Url, this.checkUrl).subscribe(resp => {
+  		if (resp.json().isIdentical == true) {
+  			this.selected.Missing = false;
+  			this.updateList(this.selected);
+  		}
+  		this.showModalUpdate = false;
+  	});	
   }
 
 

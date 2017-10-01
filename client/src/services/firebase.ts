@@ -51,6 +51,11 @@ export class AuthService {
 
 	}
 
+	checkFaces(first, second) {
+		let url = 'https://0uhycibtdb.execute-api.us-east-1.amazonaws.com/prod/compareFaces?firstFace='+first+'&secondFace='+second;
+		return this.http.get(url);
+	}
+
 
 }
 
