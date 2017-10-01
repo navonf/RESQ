@@ -5,17 +5,30 @@
 </ion-header>
 
 <ion-content>
+<<<<<<< HEAD
+
+
+
+    <agm-map [latitude]="ucflat" [longitude]="ucflng"
+             [gestureHandling]='greedy' [zoomControl]="false"
+             [streetViewControl]="false" (mapClick)="setRegister($event)"
+=======
     
     <agm-map [latitude]="ucflat" [longitude]="ucflng" 
              [gestureHandling]='greedy' [zoomControl]="false" 
              [streetViewControl]="false" (mapClick)="setRegister($event)" 
+>>>>>>> f2e36fa5dca41558793f714bc851bcd080cd6b11
              (centerChange)="centerChange($event)">
 
     <agm-info-window #register [latitude]="ucflat" [longitude]="ucflng">
-        
-    </agm-info-window> 
 
+<<<<<<< HEAD
+    </agm-info-window>
+
+    <agm-marker *ngFor="let mp of missings" [latitude]="mp.lat" [longitude]="mp.lng"
+=======
     <agm-marker *ngFor="let mp of missings" [latitude]="mp.Lat" [longitude]="mp.Lng" 
+>>>>>>> f2e36fa5dca41558793f714bc851bcd080cd6b11
                  [iconUrl]="icon">
 
       <agm-info-window
@@ -44,7 +57,7 @@
       </agm-info-window>
 
     </agm-marker>
-      
+
     </agm-map>
 
 
@@ -64,6 +77,12 @@
         <ion-label class="ionLabel" floating>Gender:</ion-label>
         <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Gender"></ion-input>
         </ion-item>
+
+        <!-- test pic upload-->
+        <ion-item class="ionItem">
+        <button (click)="selectPicture()" class="ionLabel" floating>upload pic</button>
+        </ion-item>
+
       </div>
 
       <div class="gallery-button" text-center (click)="openGallery()">
@@ -75,7 +94,7 @@
       <button ion-button [color]="blue" [round]="true" (click)="setMarker()">
         Register
       </button>
-      <button ion-button [color]="red" [round]="true" 
+      <button ion-button [color]="red" [round]="true"
               (click)="showModal=false" style="background-color: #DB4253;">
         Cancel
       </button>

@@ -16,6 +16,10 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpModule } from "@angular/http";
 import { AuthService } from "../services/firebase";
+// import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+// import { File } from '@ionic-native/file';
+// import { Camera, CameraOptions } from '@ionic-native/camera';
+// import { ImagePicker } from '@ionic-native/image-picker';
 
 
 export const firebaseConfig = {

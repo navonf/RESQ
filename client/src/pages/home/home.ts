@@ -10,8 +10,10 @@ import { Camera } from 'ionic-native';
   selector: 'home',
   templateUrl: 'home.html'
 })
+
 export class HomePage implements OnInit {
 
+  	// public base64Image: string;
 	title: string = "Test ShellHacks2017";
 	missings = [];
 	showModal = false;
@@ -25,11 +27,7 @@ export class HomePage implements OnInit {
   	items: Observable<any[]>;
   	imageSrc: string;
 
-
-
-
-
-  constructor(public navCtrl: NavController, private geolocation: Geolocation, 
+  constructor(public navCtrl: NavController, private geolocation: Geolocation,
   			  private fb: FormBuilder, private firebase: AuthService) {
   }
 
@@ -41,7 +39,7 @@ export class HomePage implements OnInit {
         });
         console.log(this.missings);
   	});
-  	
+
   	this.missingForm = this.fb.group({
       Name: ['', Validators.required ],
       Age: ['', Validators.required ],
@@ -52,7 +50,7 @@ export class HomePage implements OnInit {
     });
 
 
-  } 
+  }
 
   open() {
   	this.w.open();
@@ -73,10 +71,12 @@ export class HomePage implements OnInit {
 
   setMarker() {
   	this.showModal=false;
-  	this.missings.push({Name: this.missingForm.Name, Age: this.missingForm.Age, 
+  	this.missings.push({Name: this.missingForm.Name, Age: this.missingForm.Age,
   					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
   					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
-  	this.updateList({Name: this.missingForm.Name, Age: this.missingForm.Age, 
+
+  	// this.writeList();
+  	this.updateList({Name: this.missingForm.Name, Age: this.missingForm.Age,
   					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
   					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
   }
@@ -91,8 +91,26 @@ export class HomePage implements OnInit {
 
   centerChange(event) {
   	this.ucflat = event.lat;
-	this.ucflng = event.lng;
+	  this.ucflng = event.lng;
   }
+
+  // takePicture() {
+  //   this.camera.getPicture(this.options).then((imageData) => {
+  //    // imageData is either a base64 encoded string or a file URI
+  //    // If it's base64:
+  //    let base64Image = 'data:image/jpeg;base64,' + imageData;
+  //   }, (err) => {
+  //    // Handle error
+  //   });
+  // }
+
+  // selectPicture() {
+  //   this.imagePicker.getPictures(this.options).then((results) => {
+  //     for (var i = 0; i < results.length; i++) {
+  //         console.log('Image URI: ' + results[i]);
+  //     }
+  //   }, (err) => { });
+  // }
 
   writeList() {
   	this.firebase.writeVictims(this.missings);
