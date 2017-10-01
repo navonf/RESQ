@@ -5,30 +5,17 @@
 </ion-header>
 
 <ion-content>
-<<<<<<< HEAD
-
-
-
-    <agm-map [latitude]="ucflat" [longitude]="ucflng"
-             [gestureHandling]='greedy' [zoomControl]="false"
-             [streetViewControl]="false" (mapClick)="setRegister($event)"
-=======
     
     <agm-map [latitude]="ucflat" [longitude]="ucflng" 
              [gestureHandling]='greedy' [zoomControl]="false" 
              [streetViewControl]="false" (mapClick)="setRegister($event)" 
->>>>>>> f2e36fa5dca41558793f714bc851bcd080cd6b11
              (centerChange)="centerChange($event)">
 
     <agm-info-window #register [latitude]="ucflat" [longitude]="ucflng">
+        
+    </agm-info-window> 
 
-<<<<<<< HEAD
-    </agm-info-window>
-
-    <agm-marker *ngFor="let mp of missings" [latitude]="mp.lat" [longitude]="mp.lng"
-=======
     <agm-marker *ngFor="let mp of missings" [latitude]="mp.Lat" [longitude]="mp.Lng" 
->>>>>>> f2e36fa5dca41558793f714bc851bcd080cd6b11
                  [iconUrl]="icon">
 
       <agm-info-window
@@ -47,6 +34,10 @@
         </ion-item>
 
         <ion-item class="ionItemInfo">
+          <ion-label class="ionLabelInfo" stacked>Url: {{mp.Url}}</ion-label>
+        </ion-item>
+
+        <ion-item class="ionItemInfo">
           <ion-label class="ionLabelInfo" stacked>Latitude: {{mp.Lat}}</ion-label>
         </ion-item>
 
@@ -57,7 +48,7 @@
       </agm-info-window>
 
     </agm-marker>
-
+      
     </agm-map>
 
 
@@ -67,34 +58,34 @@
         <h5 style="color: #FFFFFF; text-align: center;">Missing Person</h5>
         <ion-item class="ionItem">
         <ion-label class="ionLabel" floating>Name:</ion-label>
-        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Name"></ion-input>
+        <ion-input require type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Name"></ion-input>
         </ion-item>
         <ion-item class="ionItem">
         <ion-label class="ionLabel" floating>Age:</ion-label>
-        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Age"></ion-input>
+        <ion-input require type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Age"></ion-input>
         </ion-item >
         <ion-item class="ionItem">
         <ion-label class="ionLabel" floating>Gender:</ion-label>
-        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Gender"></ion-input>
+        <ion-input require type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Gender"></ion-input>
         </ion-item>
-
-        <!-- test pic upload-->
         <ion-item class="ionItem">
-        <button (click)="selectPicture()" class="ionLabel" floating>upload pic</button>
+        <ion-label class="ionLabel" floating>Url:</ion-label>
+        <ion-input require type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Url"></ion-input>
         </ion-item>
-
       </div>
 
       <div class="gallery-button" text-center (click)="openGallery()">
-        <img [src]="imageSrc" style="width: 50px; height: 50px;" />    
+        <img *ngIf="imageSrc" [src]="imageSrc" style="size: 50%; border: 1px solid #68696A; border-radius: 20px;" />    
         <ion-icon name="images"></ion-icon>
         <p>Choose a Photo</p>  
       </div>
-
-      <button ion-button [color]="blue" [round]="true" (click)="setMarker()">
+      <button *ngIf="imageSrc" ion-button icon-only (click)="uploadPhoto()">
+        <ion-icon name="md-attach"></ion-icon>
+      </button>
+      <button ion-button [color]="blue" [round]="true" (click)="setMarker()" >
         Register
       </button>
-      <button ion-button [color]="red" [round]="true"
+      <button ion-button [color]="red" [round]="true" 
               (click)="showModal=false" style="background-color: #DB4253;">
         Cancel
       </button>

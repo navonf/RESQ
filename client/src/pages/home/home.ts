@@ -44,9 +44,10 @@ export class HomePage implements OnInit {
       Name: ['', Validators.required ],
       Age: ['', Validators.required ],
       Gender: ['', Validators.required ],
-      Lat: [0, Validators.required ],
-      Lng: [0, Validators.required ],
-      Missing: [true, Validators.required]
+      Lat: [0, ],
+      Lng: [0, ],
+      Missing: [true],
+      Url: ''
     });
 
 
@@ -65,6 +66,7 @@ export class HomePage implements OnInit {
   	this.missingForm.Lat = event.coords.lat;
   	this.missingForm.Lng = event.coords.lng;
   	this.missingForm.Missing = true;
+  	this.missingForm.Url = "";
 
   }
 
@@ -73,12 +75,14 @@ export class HomePage implements OnInit {
   	this.showModal=false;
   	this.missings.push({Name: this.missingForm.Name, Age: this.missingForm.Age,
   					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
-  					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
+  					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing,
+  					  Url: this.missingForm.Url});
 
   	// this.writeList();
   	this.updateList({Name: this.missingForm.Name, Age: this.missingForm.Age,
   					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
-  					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
+  					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing,
+  					  Url: this.missingForm.Url});
   }
 
   getLocalization() {
@@ -93,24 +97,6 @@ export class HomePage implements OnInit {
   	this.ucflat = event.lat;
 	  this.ucflng = event.lng;
   }
-
-  // takePicture() {
-  //   this.camera.getPicture(this.options).then((imageData) => {
-  //    // imageData is either a base64 encoded string or a file URI
-  //    // If it's base64:
-  //    let base64Image = 'data:image/jpeg;base64,' + imageData;
-  //   }, (err) => {
-  //    // Handle error
-  //   });
-  // }
-
-  // selectPicture() {
-  //   this.imagePicker.getPictures(this.options).then((results) => {
-  //     for (var i = 0; i < results.length; i++) {
-  //         console.log('Image URI: ' + results[i]);
-  //     }
-  //   }, (err) => { });
-  // }
 
   writeList() {
   	this.firebase.writeVictims(this.missings);
@@ -133,8 +119,13 @@ export class HomePage implements OnInit {
 
   Camera.getPicture(cameraOptions)
     .then(file_uri => this.imageSrc = file_uri, 
-    err => console.log(err));   
-}
+    err => console.log(err));  
+    console.log (this.imageSrc); 
+  }
+
+  uploadPhoto() {
+  	this.firebase.postFile(this.imageSrc);
+  }
 
 
 }

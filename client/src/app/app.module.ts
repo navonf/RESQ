@@ -16,6 +16,9 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpModule } from "@angular/http";
 import { AuthService } from "../services/firebase";
+import { CloudinaryModule } from '@cloudinary/angular-4.x';
+import * as  Cloudinary from 'cloudinary-core';
+import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 // import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 // import { File } from '@ionic-native/file';
 // import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -43,11 +46,13 @@ export const firebaseConfig = {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDxmjzIytJXSp-gKVKwUB5S1tOAusl1S3c'
     }),
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'dtoe4by6a', upload_preset: 'amardoj5'}),
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     HttpModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    Ng2CloudinaryModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
