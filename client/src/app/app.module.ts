@@ -12,7 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpModule } from "@angular/http";
 import { AuthService } from "../services/firebase";
@@ -41,9 +41,9 @@ export const firebaseConfig = {
     }),
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
+    HttpModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,7 +57,8 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
-    AuthService
+    AuthService,
+    AngularFireDatabase
   ]
 })
 export class AppModule {}

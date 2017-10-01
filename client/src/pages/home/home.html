@@ -6,8 +6,6 @@
 
 <ion-content>
     
-
-
     <agm-map [latitude]="ucflat" [longitude]="ucflng" 
              [gestureHandling]='greedy' [zoomControl]="false" 
              [streetViewControl]="false" (mapClick)="setRegister($event)" 
@@ -17,30 +15,30 @@
         
     </agm-info-window> 
 
-    <agm-marker *ngFor="let mp of missings" [latitude]="mp.lat" [longitude]="mp.lng" 
+    <agm-marker *ngFor="let mp of missings" [latitude]="mp.Lat" [longitude]="mp.Lng" 
                  [iconUrl]="icon">
 
       <agm-info-window
                   style="max-height: 5px; overflow-y: auto;">
         <h5 style="color: #E0263B; text-align: center;">Missing Person</h5>
         <ion-item class="ionItemInfo">
-          <ion-label class="ionLabelInfo" stacked>Name: {{mp.name}}</ion-label>
+          <ion-label class="ionLabelInfo" stacked>Name: {{mp.Name}}</ion-label>
         </ion-item>
 
         <ion-item class="ionItemInfo">
-          <ion-label class="ionLabelInfo" stacked>Age: {{mp.age}}</ion-label>
+          <ion-label class="ionLabelInfo" stacked>Age: {{mp.Age}}</ion-label>
         </ion-item>
 
         <ion-item class="ionItemInfo">
-          <ion-label class="ionLabelInfo" stacked>Gender: {{mp.gender}}</ion-label>
+          <ion-label class="ionLabelInfo" stacked>Gender: {{mp.Gender}}</ion-label>
         </ion-item>
 
         <ion-item class="ionItemInfo">
-          <ion-label class="ionLabelInfo" stacked>Latitude: {{mp.lat}}</ion-label>
+          <ion-label class="ionLabelInfo" stacked>Latitude: {{mp.Lat}}</ion-label>
         </ion-item>
 
         <ion-item class="ionItemInfo">
-          <ion-label class="ionLabelInfo" stacked>Longitude: {{mp.lng}}</ion-label>
+          <ion-label class="ionLabelInfo" stacked>Longitude: {{mp.Lng}}</ion-label>
         </ion-item>
 
       </agm-info-window>
@@ -56,15 +54,15 @@
         <h5 style="color: #FFFFFF; text-align: center;">Missing Person</h5>
         <ion-item class="ionItem">
         <ion-label class="ionLabel" floating>Name:</ion-label>
-        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.name"></ion-input>
+        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Name"></ion-input>
         </ion-item>
         <ion-item class="ionItem">
         <ion-label class="ionLabel" floating>Age:</ion-label>
-        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.age"></ion-input>
+        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Age"></ion-input>
         </ion-item >
         <ion-item class="ionItem">
         <ion-label class="ionLabel" floating>Gender:</ion-label>
-        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.gender"></ion-input>
+        <ion-input type="text" style="color: #FFFFFF" [(ngModel)]="missingForm.Gender"></ion-input>
         </ion-item>
       </div>
 

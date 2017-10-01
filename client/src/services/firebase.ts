@@ -35,7 +35,16 @@ export class AuthService {
   }
 
   readVictims() {
-  	return this.db.list('/victims/');
+  	return this.db.list('/victims');
+  }
+
+  writeVictims(items) {
+  	this.db.database.ref('/victims/').set(items);
+  }
+
+
+  updateVictims(item) {
+  	this.db.database.ref('/victims/'+item.Name).set(item);
   }
 
 
