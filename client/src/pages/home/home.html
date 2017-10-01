@@ -16,7 +16,7 @@
     </agm-info-window> 
 
     <agm-marker *ngFor="let mp of missings" [latitude]="mp.Lat" [longitude]="mp.Lng" 
-                 [iconUrl]="icon">
+                 [iconUrl]="mp.Missing? icon : savedIcon">
 
       <agm-info-window
                   style="max-height: 5px; overflow-y: auto;">
@@ -33,8 +33,9 @@
           <ion-label class="ionLabelInfo" stacked>Gender: {{mp.Gender}}</ion-label>
         </ion-item>
 
-        <ion-item class="ionItemInfo">
-          <ion-label class="ionLabelInfo" stacked>Url: {{mp.Url}}</ion-label>
+        <ion-item *ngIf="mp.Url" class="ionItemInfo">
+          <img src=[mp.Url]>
+          <!-- <ion-label class="ionLabelInfo" stacked>Url: {{mp.Url}}</ion-label> -->
         </ion-item>
 
         <ion-item class="ionItemInfo">
@@ -44,6 +45,12 @@
         <ion-item class="ionItemInfo">
           <ion-label class="ionLabelInfo" stacked>Longitude: {{mp.Lng}}</ion-label>
         </ion-item>
+
+        <button ion-button [round]="true"  style="background-color: rgb(219, 66, 83);
+              margin: auto; transition: none; margin-top: 3%; width: 30%; margin-left: 40%"
+              (click)="updateStatus(mp)">
+          RES-Q!
+        </button>        
 
       </agm-info-window>
 
@@ -75,8 +82,8 @@
       </div>
 
       <div class="gallery-button" text-center (click)="openGallery()">
-        <img *ngIf="imageSrc" [src]="imageSrc" style="size: 50%; border: 1px solid #68696A; border-radius: 20px;" />    
-        <ion-icon name="images"></ion-icon>
+        <img *ngIf="imageSrc" [src]="imageSrc" 
+          style="size: 50%; border: 1px solid #68696A; border-radius: 20px;" />    
         <p>Choose a Photo</p>  
       </div>
       <button *ngIf="imageSrc" ion-button icon-only (click)="uploadPhoto()">
@@ -87,6 +94,30 @@
       </button>
       <button ion-button [color]="red" [round]="true" 
               (click)="showModal=false" style="background-color: #DB4253;">
+        Cancel
+      </button>
+
+    </div>
+
+    <div *ngIf="showModalUpdate" class="registerPopUp" >
+
+      <div class="form-group">
+        <h5 style="color: #FFFFFF; text-align: center;">Update Status</h5>
+        <ion-label class="ionLabel" floating style="font-size: 18px;">Name: {{selected.Name}}</ion-label>
+        <ion-item class="ionItem">
+          <ion-label class="ionLabel" floating>Url:</ion-label>
+          <ion-input require type="text" style="color: #FFFFFF" [(ngModel)]="selected.Url"></ion-input>
+        </ion-item>
+      </div>
+
+      <button *ngIf="imageSrc" ion-button icon-only (click)="uploadPhoto()">
+        <ion-icon name="md-attach"></ion-icon>
+      </button>
+      <button ion-button [color]="blue" [round]="true" (click)="setMarker()" >
+        Register
+      </button>
+      <button ion-button [color]="red" [round]="true" 
+              (click)="showModalUpdate=false" style="background-color: #DB4253;">
         Cancel
       </button>
 

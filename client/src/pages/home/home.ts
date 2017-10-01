@@ -26,6 +26,9 @@ export class HomePage implements OnInit {
   	missingForm;
   	items: Observable<any[]>;
   	imageSrc: string;
+  	selected;
+  	showModalUpdate = false;
+  	savedIcon = "assets/savedicon.png";
 
   constructor(public navCtrl: NavController, private geolocation: Geolocation,
   			  private fb: FormBuilder, private firebase: AuthService) {
@@ -126,6 +129,16 @@ export class HomePage implements OnInit {
   uploadPhoto() {
   	this.firebase.postFile(this.imageSrc);
   }
+
+  updateStatus(selected) {
+  	this.showModalUpdate = true;
+  	this.selected = selected;
+  }
+
+  updateStatusList(selected) {
+  	this.updateList(selected);
+  }
+
 
 
 }

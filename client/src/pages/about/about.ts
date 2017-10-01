@@ -35,21 +35,15 @@ export class AboutPage {
   }
 
   onSignIn() {
-    if (this.firebase.signin(this.loginForm.username, this.loginForm.password))
+    this.firebase.signin(this.loginForm.username, this.loginForm.password).then(resp => {
       this.onSignInSuccess();
-    else
-      this.showLogIn = false;
-
-
+    }).catch(erro => { this.showLogIn = false; this.hideFront = true;});
   }
 
   onSignUp() {
-    if (this.firebase.signup(this.loginForm.username, this.loginForm.password))
+    this.firebase.signup(this.loginForm.username, this.loginForm.password).then(resp => {
       this.onSignInSuccess();
-    else
-      this.showSignUp = false;
-
-
+    }).catch(erro => { this.showSignUp = false; this.hideFront = true;});
   }
 
   onSignInSuccess() {

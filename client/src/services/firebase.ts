@@ -16,23 +16,11 @@ export class AuthService {
   	}
 
   signup(email: string, password: string) {
-  	console.log(email);
-  	console.log(password);
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
-        return true;
-      })
-      .catch(err => {
-        return false;
-      });    
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);    
   }
 
   signin(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(value => {
-        return true;
-      })
-      .catch(err => {
-        return false;
-      });
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   readVictims() {
