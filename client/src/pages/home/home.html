@@ -90,7 +90,9 @@
       <button *ngIf="imageSrc" ion-button icon-only (click)="uploadPhoto()">
         <ion-icon name="md-attach"></ion-icon>
       </button>
-      <button ion-button [color]="blue" [round]="true" (click)="setMarker()" >
+      <button [disabled]="missingForm.Name == '' || missingForm.Age == '' 
+                         || missingForm.Gender == '' || missingForm.Url == '' "  
+                ion-button [color]="blue" [round]="true" (click)="setMarker()" >
         Register
       </button>
       <button ion-button [color]="red" [round]="true" 
