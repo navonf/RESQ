@@ -2,13 +2,20 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FormBuilder, Validators } from '@angular/forms';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+
 
 @Component({
   selector: 'home',
   templateUrl: 'home.html'
 })
+
 export class HomePage implements OnInit {
 
+  public base64Image: string;
 	title: string = "Test ShellHacks2017";
 	missings = [];
 	showModal = false;
@@ -21,12 +28,21 @@ export class HomePage implements OnInit {
   	missingForm;
 
 
+  constructor(public navCtrl: NavController,
+    private geolocation: Geolocation,
+	  private fb: FormBuilder,
+    private transfer: FileTransfer,
+    private file: File,
+    private camera: Camera,
+    private imagePicker: ImagePicker) {
+  }
 
-
-
-  constructor(public navCtrl: NavController, private geolocation: Geolocation, 
-  			  private fb: FormBuilder) {
-
+    // fileTransfer: FileTransferObject = this.transfer.create();
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
   }
 
   ngOnInit() {
@@ -46,7 +62,7 @@ export class HomePage implements OnInit {
     });
 
 
-  } 
+  }
 
   open() {
   	this.w.open();
@@ -64,7 +80,7 @@ export class HomePage implements OnInit {
 
   setMarker() {
   	this.showModal=false;
-  	this.missings.push({name: this.missingForm.name, age: this.missingForm.age, 
+  	this.missings.push({name: this.missingForm.name, age: this.missingForm.age,
   					  gender: this.missingForm.gender, lat: this.missingForm.lat,
   					  lng: this.missingForm.lng});
   }
@@ -79,7 +95,25 @@ export class HomePage implements OnInit {
 
   centerChange(event) {
   	this.ucflat = event.lat;
-	this.ucflng = event.lng;
+	  this.ucflng = event.lng;
+  }
+
+  // takePicture() {
+  //   this.camera.getPicture(this.options).then((imageData) => {
+  //    // imageData is either a base64 encoded string or a file URI
+  //    // If it's base64:
+  //    let base64Image = 'data:image/jpeg;base64,' + imageData;
+  //   }, (err) => {
+  //    // Handle error
+  //   });
+  // }
+
+  selectPicture() {
+    this.imagePicker.getPictures(this.options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+          console.log('Image URI: ' + results[i]);
+      }
+    }, (err) => { });
   }
 
 

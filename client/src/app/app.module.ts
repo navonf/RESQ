@@ -16,6 +16,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpModule } from "@angular/http";
 import { AuthService } from "../services/firebase";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 
 export const firebaseConfig = {
@@ -57,7 +61,12 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
-    AuthService
+    AuthService,
+    FileTransfer,
+    FileTransferObject,
+    File,
+    Camera,
+    ImagePicker
   ]
 })
 export class AppModule {}
