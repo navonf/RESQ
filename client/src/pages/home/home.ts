@@ -5,6 +5,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService }				from '../../services/firebase';
 import { Observable } from 'rxjs/Observable';
 import { Camera } from 'ionic-native';
+import { AlertController } from 'ionic-angular';
+
 
 @Component({
   selector: 'home',
@@ -32,7 +34,8 @@ export class HomePage implements OnInit {
   	checkUrl;
 
   constructor(public navCtrl: NavController, private geolocation: Geolocation,
-  			  private fb: FormBuilder, private firebase: AuthService) {
+  			  private fb: FormBuilder, private firebase: AuthService,
+  			  public alertCtrl: AlertController) {
   }
 
   ngOnInit() {
@@ -145,6 +148,20 @@ export class HomePage implements OnInit {
   		if (resp.json().isIdentical == true) {
   			this.selected.Missing = false;
   			this.updateList(this.selected);
+  			const alert = this.alertCtrl.create({
+			    title: 'Person Found!',
+			    subTitle: 'Family Members will be notified',
+			    buttons: ['Dismiss']
+			});
+			alert.present();
+  		}
+  		else {
+  			const alert = this.alertCtrl.create({
+			    title: 'Verification Fails',
+			    subTitle: 'User could not be recognized',
+			    buttons: ['Dismiss']
+			  });
+			  alert.present();
   		}
   		this.showModalUpdate = false;
   	});	
