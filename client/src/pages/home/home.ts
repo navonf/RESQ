@@ -59,6 +59,7 @@ export class HomePage implements OnInit {
   }
 
   setRegister(event) {
+  	this.imageSrc = null;
   	this.showModal = true;
   	this.missingForm.Name = "";
   	this.missingForm.Age = "";
@@ -66,6 +67,7 @@ export class HomePage implements OnInit {
   	this.missingForm.Lat = event.coords.lat;
   	this.missingForm.Lng = event.coords.lng;
   	this.missingForm.Missing = true;
+
   }
 
 
@@ -74,7 +76,6 @@ export class HomePage implements OnInit {
   	this.missings.push({Name: this.missingForm.Name, Age: this.missingForm.Age, 
   					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
   					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
-  	// this.writeList();
   	this.updateList({Name: this.missingForm.Name, Age: this.missingForm.Age, 
   					  Gender: this.missingForm.Gender, Lat: this.missingForm.Lat,
   					  Lng: this.missingForm.Lng, Missing: this.missingForm.Missing});
@@ -100,6 +101,22 @@ export class HomePage implements OnInit {
   updateList(person) {
   	this.firebase.updateVictims(person);
   }
+
+  private openGallery (): void {
+  let cameraOptions = {
+    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    destinationType: Camera.DestinationType.FILE_URI,      
+    quality: 100,
+    targetWidth: 500,
+    targetHeight: 500,
+    encodingType: Camera.EncodingType.JPEG,      
+    correctOrientation: true
+  }
+
+  Camera.getPicture(cameraOptions)
+    .then(file_uri => this.imageSrc = file_uri, 
+    err => console.log(err));   
+}
 
 
 }
